@@ -9,8 +9,8 @@ export class EpisodesService {
 
   constructor(private http: HttpClient) { }
 
-  getEpisodes(){
-    return this.http.get(APIURL.episodes);
+  getEpisodes(page = APIURL.episodes){
+    return this.http.get(page);
   }
 
   getEpisode(id){

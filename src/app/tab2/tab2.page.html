@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Episodes
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,13 +9,13 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
+      <ion-title size="large">Episodes</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-grid>
     <ion-row>
-      <ion-col size="12" size-sm="6" size-lg="4" *ngFor="let ep of Episodes.results">
+      <ion-col size="12" size-sm="6" size-lg="4" *ngFor="let ep of Episodes">
         <ion-card [routerLink]="['/episodes', ep.id]" >
           <ion-card-header>
             <ion-card-subtitle>{{ ep.air_date }}</ion-card-subtitle>
@@ -29,4 +29,11 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="circular"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

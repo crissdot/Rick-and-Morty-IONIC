@@ -8,7 +8,9 @@ import { EpisodesService } from '../services/episodes.service';
 })
 export class Tab2Page {
 
-  Episodes: any = [];
+  Episodes: Array<any> = [];
+  private eps: Array<any> = [];
+  private nextURL: string = " ";
 
   constructor(private EpiService: EpisodesService) {}
 
@@ -16,11 +18,24 @@ export class Tab2Page {
     this.getEpisodes();
   }
 
-  getEpisodes(){
-    this.EpiService.getEpisodes().subscribe(ep => {
+  getEpisodes(nextURL?: string){
+    this.EpiService.getEpisodes(nextURL).subscribe((ep: any)  => {
       console.log(ep);
-      this.Episodes = ep;
+      this.eps.push(...ep.results);
+      this.nextURL = ep.info.next;
+
+      this.Episodes.push(...this.eps.splice(0, 18));
     })
+  }
+
+  loadData(event) {
+    if (!this.nextURL) {
+      return event.target.disabled = true;
+    }
+    setTimeout(() => {
+      this.getEpisodes(this.nextURL);
+      event.target.complete();
+    }, 500);
   }
 
 }

@@ -20,7 +20,6 @@ export class Tab1Page {
 
   getCharacters(nextURL?: string) {
     if((!this.chars || this.chars.length < 15) && this.nextURL) return this.getAPICharacters(nextURL);
-    console.log('HIIII');
     this.showCharacters();
   }
 
@@ -30,7 +29,6 @@ export class Tab1Page {
 
   private getAPICharacters(nextURL?: string){
     return this.charService.getCharacters(nextURL).subscribe((characters: any) => {
-      console.log(characters);
       this.chars.push(...characters.results);
       this.nextURL = characters.info.next;
 
