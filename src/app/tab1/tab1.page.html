@@ -15,18 +15,33 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col size="12" size-sm="6" size-lg="4" *ngFor="let char of Characters.results">
+      <ion-col class="card" size="12" size-sm="6" size-lg="4" *ngFor="let char of Characters">
         <ion-card [routerLink]="['/characters', char.id]">
-          <ion-card-header>
-            <ion-card-subtitle>{{ char.species }}</ion-card-subtitle>
-            <ion-card-title>{{ char.name }}</ion-card-title>
+          <ion-card-header class="status">
+            <div>
+              <ion-card-subtitle>{{ char.species }}</ion-card-subtitle>
+              <ion-card-title>{{ char.name }}</ion-card-title>
+            </div>
+            <div [ngSwitch]="char.status" class="status-icon">
+              <span class="status-text">{{ char.status }}</span>
+              <ion-icon *ngSwitchCase="'unknown'" name="help-circle"></ion-icon>
+              <ion-icon *ngSwitchCase="'Dead'" name="skull"></ion-icon>
+              <ion-icon *ngSwitchDefault name="fitness"></ion-icon>
+            </div>
+            
           </ion-card-header>
         
-          <ion-card-content>
+          <ion-card-content class="char-img">
             <img [src]="char.image" alt="">
           </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="circular"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

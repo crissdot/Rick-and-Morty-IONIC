@@ -9,8 +9,8 @@ export class CharactersService {
 
   constructor(private http: HttpClient) { }
 
-  getCharacters(){
-    return this.http.get(APIURL.characters);
+  getCharacters(url = APIURL.characters){
+    return this.http.get(url);
   }
 
   getCharacter(id){

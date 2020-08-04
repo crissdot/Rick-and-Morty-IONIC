@@ -8,7 +8,8 @@ const routes: Routes = [
   },
   {
     path: 'characters/:id',
-    loadChildren: () => import('./pages/characters/characters.module').then( m => m.CharactersPageModule)
+    loadChildren: () => import('./pages/characters/characters.module').then( m => m.CharactersPageModule),
+    pathMatch: 'full'
   },
   {
     path: 'episodes/:id',

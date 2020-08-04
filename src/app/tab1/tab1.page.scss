@@ -1,0 +1,35 @@
+.card{
+    display: flex;
+    justify-content: space-around;
+    max-width: 100%;
+}
+
+.status{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status-icon{
+    position: relative;
+    font-size: 2.5em;
+}
+
+.status-icon .status-text {
+    visibility: hidden;
+    right: 105%;
+    top: 5%;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+    border-radius: 6px;
+    font-size: 0.5em;
+
+    position: absolute;
+    z-index: 1;
+}
+
+.status-icon:hover .status-text {
+    visibility: visible;
+}
