@@ -13,5 +13,20 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-sm="6" size-lg="4" *ngFor="let ep of Episodes.results">
+        <ion-card [routerLink]="['/episodes', ep.id]" >
+          <ion-card-header>
+            <ion-card-subtitle>{{ ep.air_date }}</ion-card-subtitle>
+            <ion-card-title>{{ ep.name }}</ion-card-title>
+          </ion-card-header>
+        
+          <ion-card-content>
+            {{ ep.episode }}
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

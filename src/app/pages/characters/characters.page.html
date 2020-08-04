@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ Character.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-grid>
+  <ion-row>
+    <ion-col size="12" size-md="3">
+      <ion-avatar>
+        <img [src]="Character.image" alt="">
+      </ion-avatar>
+    </ion-col>
+    <ion-col size="12" size-md="9">
+      <h2>{{ Character.name }}</h2>
+      <ion-item>
+        <ion-label>
+          Status: {{ Character.status }}
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          Species: {{ Character.species }}
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          Gender: {{ Character.gender }}
+        </ion-label>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>
