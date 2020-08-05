@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CharactersService } from '../../services/characters.service';
 import { EpisodesService } from '../../services/episodes.service';
+import { getId } from '../getId';
 
 @Component({
   selector: 'app-characters',
@@ -11,9 +12,8 @@ import { EpisodesService } from '../../services/episodes.service';
 export class CharactersPage implements OnInit {
 
   Character: any = [];
-  originId: any;
-  locationId: any;
-  episode: any = [];
+  private originId: string;
+  private locationId: string;
   Episodes: any = [];
 
   constructor(private routeActive: ActivatedRoute, private charService: CharactersService, private EpiService: EpisodesService) { }
@@ -22,26 +22,17 @@ export class CharactersPage implements OnInit {
     const id = this.routeActive.snapshot.paramMap.get('id');
     this.charService.getCharacter(id).subscribe((char: any) => {
       this.Character = char;
-
-      this.originId = char.origin.url;
-      this.originId = this.originId.slice(this.originId.lastIndexOf('/')+1);
-
-      this.locationId = char.location.url;
-      this.locationId = this.locationId.slice(this.locationId.lastIndexOf('/')+1);
+      this.originId = getId(char.origin.url);
+      this.locationId = getId(char.location.url);
       
       char.episode.forEach((ep: string) => {
-        ep = ep.slice(ep.lastIndexOf('/')+1);
-        this.episode.push(ep);
+        ep = getId(ep);
 
-        this.getInfoEpisode(ep);
+        this.EpiService.getEpisode(ep).subscribe(ep => {
+          this.Episodes.push(ep);
+        })
       })
     });
-  }
-
-  getInfoEpisode(epId){
-    this.EpiService.getEpisode(epId).subscribe(ep => {
-      this.Episodes.push(ep);
-    })
   }
 
 }

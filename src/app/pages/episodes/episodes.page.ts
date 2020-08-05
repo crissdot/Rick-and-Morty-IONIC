@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EpisodesService } from '../../services/episodes.service';
 import { ActivatedRoute } from '@angular/router';
 import { CharactersService } from '../../services/characters.service';
+import { getId } from '../getId';
 
 @Component({
   selector: 'app-episodes',
@@ -11,7 +12,6 @@ import { CharactersService } from '../../services/characters.service';
 export class EpisodesPage implements OnInit {
 
   Episodes: any = [];
-  chars: any = [];
   Characters: any = [];
 
   constructor(private epiService: EpisodesService, private routeActive: ActivatedRoute, private charService: CharactersService) { }
@@ -21,19 +21,14 @@ export class EpisodesPage implements OnInit {
     this.epiService.getEpisode(id).subscribe((ep: any) => {
       this.Episodes = ep;
 
-      ep.characters.forEach((ep: string) => {
-        ep = ep.slice(ep.lastIndexOf('/')+1);
-        this.chars.push(ep);
+      ep.characters.forEach((chars: string) => {
+        chars = getId(chars);
 
-        this.getInfoCharacters(ep);
+        this.charService.getCharacter(chars).subscribe(char => {
+          this.Characters.push(char);
+        })
       })
     });
-  }
-
-  getInfoCharacters(charId){
-    this.charService.getCharacter(charId).subscribe(char => {
-      this.Characters.push(char);
-    })
   }
 
 }
