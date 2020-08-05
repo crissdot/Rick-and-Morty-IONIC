@@ -12,4 +12,8 @@ export class LocationsService {
   getLocations(page = APIURL.locations){
     return this.http.get(page);
   }
+
+  getLocation(id){
+    return this.http.get(`${APIURL.locations}/${id}`);
+  }
 }

@@ -8,12 +8,15 @@ const routes: Routes = [
   },
   {
     path: 'characters/:id',
-    loadChildren: () => import('./pages/characters/characters.module').then( m => m.CharactersPageModule),
-    pathMatch: 'full'
+    loadChildren: () => import('./pages/characters/characters.module').then( m => m.CharactersPageModule)
   },
   {
     path: 'episodes/:id',
     loadChildren: () => import('./pages/episodes/episodes.module').then( m => m.EpisodesPageModule)
+  },
+  {
+    path: 'locations/:id',
+    loadChildren: () => import('./pages/locations/locations.module').then( m => m.LocationsPageModule)
   }
 ];
 @NgModule({

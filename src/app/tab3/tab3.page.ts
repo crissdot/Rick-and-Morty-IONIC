@@ -25,7 +25,6 @@ export class Tab3Page {
 
   getAPILocations(nextURL?: string){
     return this.LocService.getLocations(nextURL).subscribe((loc: any) => {
-      console.log(loc);
       this.locs.push(...loc.results);
       this.nextURL = loc.info.next;
 
@@ -35,7 +34,6 @@ export class Tab3Page {
 
   showLocations(){
     this.Locations.push(...this.locs.splice(0,12));
-    console.log(this.Locations);
   }
 
   loadData(event) {

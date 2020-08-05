@@ -29,9 +29,37 @@
       </ion-item>
       <ion-item>
         <ion-label>
-          Gender: {{ Character.gender }}
+          <span>Gender:</span> {{ Character.gender }}
         </ion-label>
       </ion-item>
+      <ion-item>
+        <ion-label>
+          Origin: <span class="span-hover" *ngIf="originId; else unknown" [routerLink]="['/locations', originId ]" >{{ Character.origin?.name }}</span>
+          <ng-template #unknown>Unknown</ng-template>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          Location: <span class="span-hover" *ngIf="locationId; else unknown" [routerLink]="['/locations', locationId ]" >{{ Character.location?.name }}</span>
+          <ng-template #unknown>Unknown</ng-template>
+        </ion-label>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  
+  <h2>Episodes where appears: {{Episodes.length}}</h2>
+  <ion-row class="episodes">
+    <ion-col size="12" size-md="6" size-lg="4" *ngFor="let ep of Episodes">
+      <ion-card [routerLink]="['/episodes', ep.id]">
+        <ion-card-header>
+          <ion-card-subtitle>{{ ep.air_date }}</ion-card-subtitle>
+          <ion-card-title class="title">{{ ep.name }}</ion-card-title>
+        </ion-card-header>
+      
+        <ion-card-content>
+          {{ ep.episode }}
+        </ion-card-content>
+      </ion-card>
     </ion-col>
   </ion-row>
 </ion-grid>

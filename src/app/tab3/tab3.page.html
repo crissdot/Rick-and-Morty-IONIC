@@ -18,11 +18,13 @@
       <ion-col size="12" size-sm="6" size-md="4" size-xl="3" *ngFor="let loc of Locations">
         <ion-card [routerLink]="['/locations', loc.id]" >
           <ion-card-header>
-            <ion-card-subtitle>{{ loc.dimension }}</ion-card-subtitle>
+            <ion-card-subtitle>Residents: {{ loc.residents.length }}</ion-card-subtitle>
             <ion-card-title>{{ loc.name }}</ion-card-title>
           </ion-card-header>
         
           <ion-card-content>
+            {{ loc.dimension }}
+            <br>
             {{ loc.type }}
           </ion-card-content>
         </ion-card>

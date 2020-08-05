@@ -1,9 +1,9 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ Episodes.name }}</ion-title>
+    <ion-title class="title">{{ Episodes.name }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,6 +11,14 @@
   <ion-item>
     <ion-label>
       {{ Episodes.air_date }}
+    </ion-label>
+  </ion-item>
+  <h2 class="title-chars">Characters in the episode</h2>
+  <ion-item>
+    <ion-label class="characters">
+      <ion-avatar class="char" *ngFor="let char of Characters">
+        <img [routerLink]="['/characters', char.id]" [src]="char.image" alt="">
+      </ion-avatar>
     </ion-label>
   </ion-item>
 </ion-content>

@@ -20,7 +20,6 @@ export class Tab2Page {
 
   getEpisodes(nextURL?: string){
     this.EpiService.getEpisodes(nextURL).subscribe((ep: any)  => {
-      console.log(ep);
       this.eps.push(...ep.results);
       this.nextURL = ep.info.next;
 
