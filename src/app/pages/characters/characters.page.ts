@@ -12,8 +12,8 @@ import { getId } from '../getId';
 export class CharactersPage implements OnInit {
 
   Character: any = [];
-  private originId: string;
-  private locationId: string;
+  originId: string;
+  locationId: string;
   Episodes: any = [];
 
   constructor(private routeActive: ActivatedRoute, private charService: CharactersService, private EpiService: EpisodesService) { }
